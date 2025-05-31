@@ -1,6 +1,7 @@
 import { View, Text, Button, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useState } from "react";
+import axios from "axios";
 
 import { CameraView, CameraType, useCameraPermissions} from "expo-camera";
 
@@ -9,11 +10,14 @@ export default function ScanScreen() {
   const [facing, setFacing] = useState<CameraType>('back');
   const [permission, requestPermission] = useCameraPermissions();
 
-  function manualScan() {
-    console.log("Manually Scanned");
-    fetch(`${process.env.EXPO_PUBLIC_API_URL}/line-items`)
-      .then(res => res.json())
-      .then(console.log)
+  async function manualScan() {
+    try {
+      console.log("Manually Scanned");
+      const res = await axios.get(`${process.env.EXPO_PUBLIC_API_URL}/fastapi`);
+      console.log(res.data);
+    } catch (error) {
+      console.error("Scan failed:", error);
+    }
   }
 
   if (!permission) {

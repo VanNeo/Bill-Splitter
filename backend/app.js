@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const axios = require('axios');
 const cors = require('cors');
 const { PrismaClient } = require('@prisma/client');
 
@@ -17,6 +18,16 @@ app.get('/', (req, res) => {
 
 app.get('/second', (req, res) => {
   res.send('This is the second message')
+})
+
+app.get('/fastapi', async (req, res) => {
+  try {
+    const response = await axios.get('http://127.0.0.1:8000/');
+    res.send(response.data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('FastAPI request failed');
+  }
 })
 
 app.get('/line-items', async (req, res) => {

@@ -26,7 +26,8 @@ backend/
 ## Getting Started
 
 ### Prerequisites
-- Node.js (LTS recommended)
+- Node.js Version 22
+- Python Version 3.10
 - Expo CLI (`npm install -g expo-cli`)
 
 ### Running the App

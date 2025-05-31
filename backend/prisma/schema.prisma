@@ -8,8 +8,8 @@ datasource db {
 }
 
 model line_items {
-  line_item_id              Int     @id @default(autoincrement())
-  line_item_name            String
-  line_item_price           Decimal @db.Decimal(2, 0)
-  line_item_assigned_person String?
+  line_item_id            Int     @id @default(autoincrement())
+  line_item_name          String
+  line_item_price         Decimal @db.Decimal(10, 2)
+  line_item_assigned_user String?
 }
