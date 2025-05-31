@@ -10,7 +10,10 @@ export default function ScanScreen() {
   const [permission, requestPermission] = useCameraPermissions();
 
   function manualScan() {
-    console.log("Manually Scanned")
+    console.log("Manually Scanned");
+    fetch(`${process.env.EXPO_PUBLIC_API_URL}/line-items`)
+      .then(res => res.json())
+      .then(console.log)
   }
 
   if (!permission) {
